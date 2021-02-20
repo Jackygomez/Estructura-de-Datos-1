@@ -1,1 +1,116 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Recursividad;
+
+/**
+ *
+ * @author Jackeline Gomez
+ */
+
+//Para un arreglo de N posiciones de datos enteros, devolver el valor menor en el arreglo
+public class Main {
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int[] numeros = {2,4,5,6,1,2};
+        int[] numeros1 = {8,4,7,3};
+        System.out.println("Menor: " + menor(numeros, 0,numeros[0]));
+        System.out.println(existencia(numeros1,0,4));  // Si el número existe te sale el mensaje de que existe, y si no existe no saldrá mensaje
+        System.out.println("Tribonacci: " + Tribonacci(7));
+        int base = 10;
+        int exponente = 3;
+        System.out.println("Potencia: " + potencia(base,exponente));
+        String s = "ana";
+        System.out.println("Palindromo: "+ palindromo(s));
+    }
+    
+     public static int menor(int[]numeros, int indice, int min) {
+        // TODO code application logic here
+        if (indice != numeros.length ){
+            
+            if (numeros[indice]< min){
+                min = menor(numeros, indice + 1,numeros[indice]);
+                
+            }
+            
+            else{
+                min = menor(numeros,indice + 1, min);
+                
+            }
+        }
+        return min;
+    }
+     
+    //Para un arreglo de N posiciones, determinar si un dato determinado existe.
+    
+    public static int existencia(int[]numeros1, int indice, int num) {
+        
+        if (indice != numeros1.length){
+            
+            if (numeros1[indice]== num){
+                System.out.println("El numero existe");
+                
+            }
+            
+            else{
+                System.out.println(numeros1[indice]);
+                indice = indice + 1;
+                existencia(numeros1,indice,num);
+                  
+            }
+        
+        }
+        return num;
+    }
+    
+    
+    //Mostrar N números de la secuencia Tribonacci
+
+    public static int Tribonacci(int n) {
+          
+        if (n <= 2 ){ 
+            return 1; 
+        }
+              
+        else{
+            return Tribonacci(n-1)+Tribonacci(n-2)+Tribonacci(n-3);
+        }
+    }
+    
+    //Para un valor N real y un M entero positivo mayor que cero, calcular N^M
+    
+    public static int potencia(int base, int exponente) {
+          
+        if (exponente == 0 ){ 
+            return 1; 
+        }
+              
+        else if (exponente == 1) {
+            return base;
+        }
+        
+        else{
+            return base * potencia(base,exponente-1);
+        }
+    }
+    
+    //
+    
+    public static boolean palindromo(String s) {
+    
+        if(s.length() <= 1){
+            return true;
+        }else{
+            if(s.charAt(0) == s.charAt(s.length() - 1)){
+                return palindromo(s.substring(1,s.length() - 1 ) );
+            }else{
+                return false;
+        }
+    }  
+}
+}
+
+
 
